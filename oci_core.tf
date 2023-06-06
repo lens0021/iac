@@ -13,6 +13,7 @@ data "oci_identity_domains" "default" {
 }
 
 resource "oci_core_vcn" "default" {
+  cidr_block     = "10.1.0.0/16"
   compartment_id = oci_identity_compartment.default.id
 }
 
