@@ -3,6 +3,10 @@ variable "oci_private_key" {
   sensitive = true
 }
 
+variable "oci_fingerprint" {
+  type = string
+}
+
 variable "oci_region" {
   default = "ap-seoul-1"
 }
@@ -24,6 +28,6 @@ provider "oci" {
   tenancy_ocid = "ocid1.tenancy.oc1..aaaaaaaamsyx65yzn6dlrfg2moqhmfhdb3bhipgwtb326vhw62xtb4jmu5za"
   user_ocid    = "ocid1.user.oc1..aaaaaaaaqp2n5eo7an2mexklqddkix6vdew22llbzj65lgfgiqsnb6eippva"
   private_key  = var.oci_private_key
-  fingerprint  = "46:bd:cb:be:19:24:a7:70:7b:96:a7:d9:58:a7:b0:67"
+  fingerprint  = var.oci_fingerprint
   region       = var.oci_region
 }
