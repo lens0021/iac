@@ -3,6 +3,10 @@ variable "oci_private_key" {
   sensitive = true
 }
 
+variable "oci_region" {
+  default = "ap-seoul-1"
+}
+
 terraform {
   required_version = "~> 1.0"
 
@@ -21,5 +25,5 @@ provider "oci" {
   user_ocid    = "ocid1.user.oc1..aaaaaaaaqp2n5eo7an2mexklqddkix6vdew22llbzj65lgfgiqsnb6eippva"
   private_key  = var.oci_private_key
   fingerprint  = "46:bd:cb:be:19:24:a7:70:7b:96:a7:d9:58:a7:b0:67"
-  region       = "ap-seoul-1"
+  region       = var.oci_region
 }
