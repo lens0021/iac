@@ -9,7 +9,7 @@ resource "oci_identity_compartment" "cron" {
 }
 
 data "oci_identity_domains" "default" {
-  compartment_id = oci_identity_compartment.cron.id
+  compartment_id = data.oci_identity_compartment.root.id
 }
 
 resource "oci_core_instance" "blue" {
