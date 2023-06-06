@@ -14,7 +14,7 @@ data "oci_identity_domains" "default" {
 
 resource "oci_core_instance" "blue" {
   compartment_id      = oci_identity_compartment.cron.id
-  availability_domain = data.oci_identity_domain.default.domains[0].id
+  availability_domain = data.oci_identity_domains.default.domains[0].id
   shape               = "VM.Standard.A1.Flex"
 
   source_details {
