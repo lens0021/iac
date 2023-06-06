@@ -9,7 +9,7 @@ resource "oci_identity_compartment" "default" {
 }
 
 data "oci_identity_domains" "default" {
-  compartment_id = data.oci_identity_compartment.root.id
+  compartment_id = oci_identity_compartment.default.id
 }
 
 resource "oci_core_vcn" "default" {
