@@ -8,17 +8,13 @@ resource "oci_identity_compartment" "cron" {
   name           = "cron"
 }
 
-resource "oci_identity_domain" "cron" {
+data "oci_identity_domains" "default" {
   compartment_id = oci_identity_compartment.cron.id
-  description    = "A domain"
-  display_name   = "cron"
-  home_region    = var.oci_region
-  license_type   = "free"
 }
 
 resource "oci_core_instance" "blue" {
   compartment_id      = oci_identity_compartment.cron.id
-  availability_domain = oci_identity_domain.cron.id
+  availability_domain = data.oci_identity_domain.default.domains[0].id
   shape               = "VM.Standard.A1.Flex"
 
   source_details {
