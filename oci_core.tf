@@ -27,7 +27,7 @@ resource "oci_core_subnet" "blue" {
 resource "oci_core_instance" "blue" {
   compartment_id      = oci_identity_compartment.blue.id
   availability_domain = data.oci_identity_availability_domain.ad1.id
-  shape               = "VM.Standard.A1.Flex"
+  shape               = data.oci_core_images.ubuntu_minimal.shape
 
   shape_config {
     ocpus         = 2
@@ -57,9 +57,10 @@ resource "oci_core_instance" "blue" {
 data "oci_core_images" "ubuntu_minimal" {
   compartment_id = oci_identity_compartment.blue.id
 
+  # VM.Standard.A1.Flex: Arm-based
+  # VM.Standard.E2.1.Micro
+  shape = "VM.Standard.E2.1.Micro"
+
   operating_system = "Canonical Ubuntu"
-  shape            = "VM.Standard.A1.Flex"
   sort_by          = "TIMECREATED"
 }
-
-# TODO: Create shapes data
