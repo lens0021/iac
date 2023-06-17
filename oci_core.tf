@@ -53,3 +53,5 @@ data "oci_core_images" "ubuntu_minimal" {
   shape            = "VM.Standard.A1.Flex"
   sort_by          = "TIMECREATED"
 }
+
+# TODO: Create shapes data
