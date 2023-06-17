@@ -64,3 +64,11 @@ data "oci_core_images" "ubuntu_minimal" {
   operating_system = "Canonical Ubuntu"
   sort_by          = "TIMECREATED"
 }
+
+data "oci_core_instances" "all" {
+  compartment_id = oci_identity_compartment.blue
+}
+# Output the result
+output "oci_all_core_instances" {
+  value = data.oci_core_instances.all
+}
