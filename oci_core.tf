@@ -22,13 +22,17 @@ resource "oci_core_subnet" "blue" {
   cidr_block     = "10.1.20.0/24"
   compartment_id = oci_identity_compartment.blue.id
   vcn_id         = oci_core_vcn.blue.id
-  depends_on     = [oci_core_vcn.blue]
 }
 
 resource "oci_core_instance" "blue" {
   compartment_id      = oci_identity_compartment.blue.id
   availability_domain = data.oci_identity_availability_domain.ad1.id
   shape               = "VM.Standard.A1.Flex"
+
+  shape_config {
+    ocpus         = 2
+    memory_in_gbs = 6
+  }
 
   source_details {
     source_type = "image"
@@ -39,9 +43,13 @@ resource "oci_core_instance" "blue" {
     subnet_id = oci_core_subnet.blue.id
   }
 
+  metadata = {
+    user_data = file("oci_core_instance_user_data.sh")
+  }
+
   lifecycle {
     ignore_changes = [
-      source_details[0].source_id,
+      source_details,
     ]
   }
 }
