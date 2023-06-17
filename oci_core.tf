@@ -19,11 +19,10 @@ resource "oci_core_vcn" "blue" {
 }
 
 resource "oci_core_subnet" "blue" {
-  availability_domain = data.oci_identity_availability_domain.ad1.id
-  cidr_block          = "10.1.20.0/24"
-  compartment_id      = oci_identity_compartment.blue.id
-  vcn_id              = oci_core_vcn.blue.id
-  depends_on          = [oci_core_vcn.blue]
+  cidr_block     = "10.1.20.0/24"
+  compartment_id = oci_identity_compartment.blue.id
+  vcn_id         = oci_core_vcn.blue.id
+  depends_on     = [oci_core_vcn.blue]
 }
 
 resource "oci_core_instance" "blue" {
