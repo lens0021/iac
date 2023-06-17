@@ -8,8 +8,9 @@ resource "oci_identity_compartment" "default" {
   name           = "default"
 }
 
-data "oci_identity_availability_domains" "default" {
+data "oci_identity_availability_domain" "default" {
   compartment_id = data.oci_identity_compartment.root.id
+  ad_number      = 1
 }
 
 resource "oci_core_vcn" "default" {
@@ -18,7 +19,7 @@ resource "oci_core_vcn" "default" {
 }
 
 resource "oci_core_subnet" "default" {
-  availability_domain = data.oci_identity_availability_domains.default.availability_domains[0].id
+  availability_domain = data.oci_identity_availability_domain.default.id
   cidr_block          = "10.1.20.0/24"
   compartment_id      = oci_identity_compartment.default.id
   vcn_id              = oci_core_vcn.default.id
@@ -26,7 +27,7 @@ resource "oci_core_subnet" "default" {
 
 resource "oci_core_instance" "blue" {
   compartment_id      = oci_identity_compartment.default.id
-  availability_domain = data.oci_identity_availability_domains.default.availability_domains[0].id
+  availability_domain = data.oci_identity_availability_domain.default.id
   shape               = "VM.Standard.A1.Flex"
 
   source_details {
