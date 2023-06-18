@@ -25,6 +25,8 @@ resource "oci_core_subnet" "blue" {
 }
 
 resource "oci_core_instance" "blue" {
+  async = false
+
   compartment_id      = oci_identity_compartment.blue.id
   availability_domain = data.oci_identity_availability_domain.ad1.id
   shape               = data.oci_core_images.ubuntu_minimal.shape
