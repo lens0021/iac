@@ -47,7 +47,7 @@ resource "oci_core_instance" "blue" {
   }
 
   metadata = {
-    user_data = file("oci_core_instance_user_data.sh")
+    user_data = base64encode(file("oci_core_instance_user_data.sh"))
   }
 
   lifecycle {
