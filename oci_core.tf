@@ -1,3 +1,7 @@
+variable "id_ed25519_2019_pub" {
+  type = string
+}
+
 data "oci_identity_compartment" "root" {
   id = "ocid1.tenancy.oc1..aaaaaaaamsyx65yzn6dlrfg2moqhmfhdb3bhipgwtb326vhw62xtb4jmu5za"
 }
@@ -47,8 +51,11 @@ resource "oci_core_instance" "blue" {
   }
 
   metadata = {
-    ssh_authorized_keys = tls_private_key.oci.public_key_openssh
-    user_data           = base64encode(file("oci_core_instance_user_data.sh"))
+    ssh_authorized_keys = join("\n", [
+      var.id_ed25519_2019_pub,
+      tls_private_key.oci.public_key_openssh,
+    ])
+    user_data = base64encode(file("oci_core_instance_user_data.sh"))
   }
 
   lifecycle {
