@@ -38,7 +38,7 @@ resource "oci_core_subnet" "blue" {
 }
 
 resource "oci_core_instance" "blue" {
-  async = false
+  display_name = "blue"
 
   compartment_id      = oci_identity_compartment.blue.id
   availability_domain = data.oci_identity_availability_domain.ad1.name
