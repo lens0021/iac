@@ -106,11 +106,6 @@ resource "oci_core_instance" "green" {
     remote_data_volume_type             = "PARAVIRTUALIZED"
   }
 
-  shape_config {
-    memory_in_gbs = 1
-    ocpus         = 1
-  }
-
   source_details {
     boot_volume_vpus_per_gb = "10"
     source_id               = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
