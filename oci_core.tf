@@ -47,7 +47,8 @@ resource "oci_core_instance" "blue" {
   }
 
   metadata = {
-    user_data = base64encode(file("oci_core_instance_user_data.sh"))
+    ssh_authorized_keys = tls_private_key.oci.public_key_openssh
+    user_data           = base64encode(file("oci_core_instance_user_data.sh"))
   }
 
   lifecycle {
