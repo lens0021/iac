@@ -28,6 +28,24 @@ resource "oci_core_subnet" "blue" {
   vcn_id         = oci_core_vcn.blue.id
 }
 
+resource "oci_core_internet_gateway" "blue" {
+  compartment_id = oci_identity_compartment.blue.id
+  vcn_id         = oci_core_vcn.blue.id
+}
+
+resource "oci_core_route_table" "blue" {
+  compartment_id = oci_identity_compartment.blue.id
+  vcn_id         = oci_core_vcn.blue.id
+
+  route_rules {
+    network_entity_id = oci_core_internet_gateway.blue.id
+
+    cidr_block       = "0.0.0.0/0"
+    destination      = "0.0.0.0/0"
+    destination_type = "CIDR_BLOCK"
+  }
+}
+
 resource "oci_core_instance" "blue" {
   display_name = "blue"
 
