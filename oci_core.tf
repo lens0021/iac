@@ -140,7 +140,6 @@ resource "oci_core_instance" "green" {
 
   shape_config {
     memory_in_gbs = 1
-    nvmes         = 1
     ocpus         = 1
   }
   source_details {
