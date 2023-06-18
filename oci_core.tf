@@ -116,7 +116,6 @@ resource "oci_core_instance" "green" {
   extended_metadata = {}
   fault_domain      = "FAULT-DOMAIN-3"
   freeform_tags     = {}
-  image             = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
   instance_options {
     are_legacy_imds_endpoints_disabled = false
   }
@@ -145,8 +144,7 @@ resource "oci_core_instance" "green" {
     source_type             = "image"
   }
 
-  state     = "RUNNING"
-  subnet_id = ""
+  state = "RUNNING"
 }
 
 data "oci_core_images" "ubuntu_minimal" {
