@@ -18,7 +18,7 @@ terraform {
     organization = "lens0021"
 
     workspaces {
-      name = "iac"
+      name = "oci"
     }
   }
 
@@ -26,11 +26,6 @@ terraform {
     oci = {
       source  = "hashicorp/oci"
       version = "~> 5.0"
-    }
-
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0"
     }
   }
 }
