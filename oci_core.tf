@@ -67,7 +67,7 @@ resource "oci_core_instance" "green" {
     "Oracle-Tags.CreatedBy" = "default/lorentz0021@gmail.com"
     "Oracle-Tags.CreatedOn" = "2023-06-17T13:44:33.204Z"
   }
-  display_name      = "instance-20230617-2234"
+  display_name      = "green"
   extended_metadata = {}
   fault_domain      = "FAULT-DOMAIN-3"
   freeform_tags     = {}
@@ -103,15 +103,18 @@ resource "oci_core_instance" "green" {
     boot_volume_type                    = "PARAVIRTUALIZED"
     firmware                            = "UEFI_64"
     is_consistent_volume_naming_enabled = true
-    is_pv_encryption_in_transit_enabled = true
     network_type                        = "PARAVIRTUALIZED"
     remote_data_volume_type             = "PARAVIRTUALIZED"
   }
 
+  shape_config {
+    ocpus         = 1
+    memory_in_gbs = 1
+  }
+
   source_details {
-    boot_volume_vpus_per_gb = "10"
-    source_id               = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
-    source_type             = "image"
+    source_id   = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
+    source_type = "image"
   }
 }
 
