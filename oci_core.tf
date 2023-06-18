@@ -60,45 +60,6 @@ resource "oci_core_instance" "green" {
     are_all_plugins_disabled = false
     is_management_disabled   = false
     is_monitoring_disabled   = false
-
-    # plugins_config = [
-    #   {
-    #     name          = "Vulnerability Scanning"
-    #     desired_state = "DISABLED"
-    #   },
-    #   {
-    #     name          = "Oracle Java Management Service"
-    #     desired_state = "DISABLED"
-    #   },
-    #   {
-    #     name          = "OS Management Service Agent"
-    #     desired_state = "ENABLED"
-    #   },
-    #   {
-    #     name          = "Management Agent"
-    #     desired_state = "DISABLED"
-    #   },
-    #   {
-    #     name          = "Custom Logs Monitoring"
-    #     desired_state = "ENABLED"
-    #   },
-    #   {
-    #     name          = "Compute Instance Run Command"
-    #     desired_state = "ENABLED"
-    #   },
-    #   {
-    #     name          = "Compute Instance Monitoring"
-    #     desired_state = "ENABLED"
-    #   },
-    #   {
-    #     name          = "Block Volume Management"
-    #     desired_state = "DISABLED"
-    #   },
-    #   {
-    #     name          = "Bastion"
-    #     desired_state = "DISABLED"
-    #   },
-    # ]
   }
 
   async = false
