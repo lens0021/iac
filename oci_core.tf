@@ -107,7 +107,12 @@ resource "oci_core_instance" "green" {
     recovery_action             = "RESTORE_INSTANCE"
   }
   availability_domain = "idrM:AP-SEOUL-1-AD-1"
-  compartment_id      = "ocid1.compartment.oc1..aaaaaaaa7fdbukoeumpfbnvc3tpodt6dqwhuyp2dmu6e5ve3gfrotqq4bf3q"
+
+  create_vnic_details {
+    subnet_id = oci_core_subnet.blue.id
+  }
+
+  compartment_id = "ocid1.compartment.oc1..aaaaaaaa7fdbukoeumpfbnvc3tpodt6dqwhuyp2dmu6e5ve3gfrotqq4bf3q"
   defined_tags = {
     "Oracle-Tags.CreatedBy" = "default/lorentz0021@gmail.com"
     "Oracle-Tags.CreatedOn" = "2023-06-17T13:44:33.204Z"
