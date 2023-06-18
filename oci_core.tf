@@ -56,22 +56,9 @@ resource "oci_core_instance" "blue" {
 }
 
 resource "oci_core_instance" "green" {
-  agent_config {
-    are_all_plugins_disabled = false
-    is_management_disabled   = false
-    is_monitoring_disabled   = false
-  }
-
   async = false
-  availability_config {
-    is_live_migration_preferred = false
-    recovery_action             = "RESTORE_INSTANCE"
-  }
-  availability_domain = "idrM:AP-SEOUL-1-AD-1"
 
-  create_vnic_details {
-    subnet_id = oci_core_subnet.blue.id
-  }
+  availability_domain = "idrM:AP-SEOUL-1-AD-1"
 
   compartment_id = "ocid1.compartment.oc1..aaaaaaaa7fdbukoeumpfbnvc3tpodt6dqwhuyp2dmu6e5ve3gfrotqq4bf3q"
   defined_tags = {
@@ -82,11 +69,34 @@ resource "oci_core_instance" "green" {
   extended_metadata = {}
   fault_domain      = "FAULT-DOMAIN-3"
   freeform_tags     = {}
+
+  ipxe_script                         = ""
+  is_pv_encryption_in_transit_enabled = false
+
+  preserve_boot_volume = false
+  shape                = "VM.Standard.E2.1.Micro"
+
+  state = "RUNNING"
+
+  agent_config {
+    are_all_plugins_disabled = false
+    is_management_disabled   = false
+    is_monitoring_disabled   = false
+  }
+
+  availability_config {
+    is_live_migration_preferred = false
+    recovery_action             = "RESTORE_INSTANCE"
+  }
+
+  create_vnic_details {
+    subnet_id = oci_core_subnet.blue.id
+  }
+
   instance_options {
     are_legacy_imds_endpoints_disabled = false
   }
-  ipxe_script                         = ""
-  is_pv_encryption_in_transit_enabled = false
+
   launch_options {
     boot_volume_type                    = "PARAVIRTUALIZED"
     firmware                            = "UEFI_64"
@@ -96,20 +106,16 @@ resource "oci_core_instance" "green" {
     remote_data_volume_type             = "PARAVIRTUALIZED"
   }
 
-  preserve_boot_volume = false
-  shape                = "VM.Standard.E2.1.Micro"
-
   shape_config {
     memory_in_gbs = 1
     ocpus         = 1
   }
+
   source_details {
     boot_volume_vpus_per_gb = "10"
     source_id               = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
     source_type             = "image"
   }
-
-  state = "RUNNING"
 }
 
 data "oci_core_images" "ubuntu_minimal" {
