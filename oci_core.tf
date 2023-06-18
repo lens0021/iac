@@ -60,9 +60,9 @@ resource "oci_core_instance" "blue" {
 resource "oci_core_instance" "green" {
   async = false
 
-  availability_domain = "idrM:AP-SEOUL-1-AD-1"
+  availability_domain = data.oci_identity_availability_domain.ad1.id
 
-  compartment_id = "ocid1.compartment.oc1..aaaaaaaa7fdbukoeumpfbnvc3tpodt6dqwhuyp2dmu6e5ve3gfrotqq4bf3q"
+  compartment_id = oci_identity_compartment.blue.id
   defined_tags = {
     "Oracle-Tags.CreatedBy" = "default/lorentz0021@gmail.com"
     "Oracle-Tags.CreatedOn" = "2023-06-17T13:44:33.204Z"
@@ -76,7 +76,7 @@ resource "oci_core_instance" "green" {
   is_pv_encryption_in_transit_enabled = false
 
   preserve_boot_volume = false
-  shape                = "VM.Standard.E2.1.Micro"
+  shape                = data.oci_core_images.ubuntu_minimal.shape
 
   state = "RUNNING"
 
@@ -113,7 +113,7 @@ resource "oci_core_instance" "green" {
   }
 
   source_details {
-    source_id   = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
+    source_id   = data.oci_core_images.ubuntu_minimal.images[0].id
     source_type = "image"
   }
 }
