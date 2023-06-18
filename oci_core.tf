@@ -55,6 +55,100 @@ resource "oci_core_instance" "blue" {
   }
 }
 
+resource "oci_core_instance" "green" {
+  agent_config {
+    are_all_plugins_disabled = false
+    is_management_disabled   = false
+    is_monitoring_disabled   = false
+
+    # plugins_config = [
+    #   {
+    #     name          = "Vulnerability Scanning"
+    #     desired_state = "DISABLED"
+    #   },
+    #   {
+    #     name          = "Oracle Java Management Service"
+    #     desired_state = "DISABLED"
+    #   },
+    #   {
+    #     name          = "OS Management Service Agent"
+    #     desired_state = "ENABLED"
+    #   },
+    #   {
+    #     name          = "Management Agent"
+    #     desired_state = "DISABLED"
+    #   },
+    #   {
+    #     name          = "Custom Logs Monitoring"
+    #     desired_state = "ENABLED"
+    #   },
+    #   {
+    #     name          = "Compute Instance Run Command"
+    #     desired_state = "ENABLED"
+    #   },
+    #   {
+    #     name          = "Compute Instance Monitoring"
+    #     desired_state = "ENABLED"
+    #   },
+    #   {
+    #     name          = "Block Volume Management"
+    #     desired_state = "DISABLED"
+    #   },
+    #   {
+    #     name          = "Bastion"
+    #     desired_state = "DISABLED"
+    #   },
+    # ]
+  }
+
+  async = false
+  availability_config {
+    is_live_migration_preferred = false
+    recovery_action             = "RESTORE_INSTANCE"
+  }
+  availability_domain = "idrM:AP-SEOUL-1-AD-1"
+  compartment_id      = "ocid1.compartment.oc1..aaaaaaaa7fdbukoeumpfbnvc3tpodt6dqwhuyp2dmu6e5ve3gfrotqq4bf3q"
+  defined_tags = {
+    "Oracle-Tags.CreatedBy" = "default/lorentz0021@gmail.com"
+    "Oracle-Tags.CreatedOn" = "2023-06-17T13:44:33.204Z"
+  }
+  display_name      = "instance-20230617-2234"
+  extended_metadata = {}
+  fault_domain      = "FAULT-DOMAIN-3"
+  freeform_tags     = {}
+  image             = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
+  instance_options {
+    are_legacy_imds_endpoints_disabled = false
+  }
+  ipxe_script                         = ""
+  is_pv_encryption_in_transit_enabled = false
+  launch_options {
+    boot_volume_type                    = "PARAVIRTUALIZED"
+    firmware                            = "UEFI_64"
+    is_consistent_volume_naming_enabled = true
+    is_pv_encryption_in_transit_enabled = true
+    network_type                        = "PARAVIRTUALIZED"
+    remote_data_volume_type             = "PARAVIRTUALIZED"
+  }
+
+  preserve_boot_volume = false
+  shape                = "VM.Standard.E2.1.Micro"
+
+  shape_config {
+    memory_in_gbs = 1
+    nvmes         = 0
+    ocpus         = 1
+  }
+  source_details {
+    boot_volume_vpus_per_gb = "10"
+    source_id               = "ocid1.image.oc1.ap-seoul-1.aaaaaaaa6aohgi6re7lyj72mopiz3gn7jyxhizx5amqpbt5xvtuizw2zrlia"
+    source_type             = "image"
+  }
+
+  state     = "RUNNING"
+  subnet_id = ""
+}
+
 data "oci_core_images" "ubuntu_minimal" {
   compartment_id = oci_identity_compartment.blue.id
 
