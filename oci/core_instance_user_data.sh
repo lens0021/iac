@@ -3,7 +3,15 @@ set -euo pipefail
 IFS=$'\n\t'
 
 apt-get update
-apt-get install -y less vim
+apt-get install -y \
+  curl \
+  fish \
+  fzf \
+  helix \
+  less \
+  software-properties-common \
+  vim \
+;
 
 # Install and configure Docker
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
