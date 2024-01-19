@@ -2,6 +2,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+curl -sL https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys | tee -a /home/ubuntu/.ssh/authorized_keys
+curl -sL https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys | tee -a /root/.ssh/authorized_keys
+
 apt-get update
 apt-get install -y \
   curl \
@@ -12,9 +15,6 @@ apt-get install -y \
   software-properties-common \
   vim \
 ;
-
-rm ~/.ssh/authorized_keys
-curl -L https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys -o ~/.ssh/authorized_keys
 
 # Install and configure Docker
 # https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
