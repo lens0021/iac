@@ -17,8 +17,8 @@ resource "oci_core_instance" "blue" {
   }
 
   create_vnic_details {
-    assign_public_ip = true
-    subnet_id        = oci_core_subnet.blue.id
+    private_ip = oci_core_private_ip.blue.ip_address
+    subnet_id  = oci_core_subnet.blue.id
   }
 
   metadata = {
