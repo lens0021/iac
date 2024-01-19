@@ -5,3 +5,7 @@ output "oci_core_instance_blue_public_ip" {
 output "oci_core_instance_blue_reserved_id" {
   value = oci_core_public_ip.blue.ip_address
 }
+
+output "oci_core_vnic_blue" {
+  value = data.oci_core_vnic.blue
+}
