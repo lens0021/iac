@@ -28,6 +28,7 @@ resource "oci_core_instance" "blue" {
   lifecycle {
     ignore_changes = [
       source_details,
+      metadata,
     ]
   }
 }

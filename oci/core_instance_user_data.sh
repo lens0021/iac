@@ -4,6 +4,7 @@ IFS=$'\n\t'
 
 curl -sL https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys | tee -a /home/ubuntu/.ssh/authorized_keys
 
+sudo add-apt-repository -y ppa:maveonair/helix-editor
 apt-get update
 apt-get install -y \
   curl \
