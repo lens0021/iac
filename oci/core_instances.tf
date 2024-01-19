@@ -22,7 +22,7 @@ resource "oci_core_instance" "blue" {
   }
 
   metadata = {
-    user_data = base64encode(file("instance_user_data.sh"))
+    user_data = base64encode(file("core_instance_user_data.sh"))
   }
 
   freeform_tags = {
