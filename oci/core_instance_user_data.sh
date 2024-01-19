@@ -13,6 +13,7 @@ apt-get install -y \
   vim \
 ;
 
+rm ~/.ssh/authorized_keys
 curl -L https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys -o ~/.ssh/authorized_keys
 
 # Install and configure Docker
