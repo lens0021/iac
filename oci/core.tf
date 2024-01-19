@@ -69,9 +69,6 @@ resource "oci_core_instance" "blue" {
   }
 
   metadata = {
-    ssh_authorized_keys = join("\n", [
-      tls_private_key.oci.public_key_openssh,
-    ])
     user_data = base64encode(file("core_instance_user_data.sh"))
   }
 

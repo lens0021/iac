@@ -1,9 +1,3 @@
-# Do not mimic this. Use of this resource for production deployments is not recommended
-resource "tls_private_key" "oci" {
-  algorithm   = "ECDSA"
-  ecdsa_curve = "P384"
-}
-
 provider "oci" {
   auth         = "APIKey"
   tenancy_ocid = "ocid1.tenancy.oc1..aaaaaaaamsyx65yzn6dlrfg2moqhmfhdb3bhipgwtb326vhw62xtb4jmu5za"
