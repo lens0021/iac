@@ -17,11 +17,17 @@ resource "oci_core_instance" "blue" {
   }
 
   create_vnic_details {
+    assign_public_ip = true
     subnet_id = oci_core_subnet.blue.id
   }
 
   metadata = {
     user_data = base64encode(file("instance_user_data.sh"))
+  }
+
+  freeform_tags = {
+    publicIP = resource.oci_core_public_ip.blue.id
+    SubnetId = oci_core_subnet.blue.id
   }
 
   lifecycle {
