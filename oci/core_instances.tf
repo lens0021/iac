@@ -10,7 +10,7 @@ resource "oci_core_instance" "blue" {
   }
 
   create_vnic_details {
-    subnet_id  = oci_core_subnet.blue.id
+    subnet_id = oci_core_subnet.blue.id
   }
 
   shape_config {
