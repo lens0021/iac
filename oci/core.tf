@@ -1,5 +1,5 @@
 data "oci_identity_compartment" "root" {
-  id = "ocid1.tenancy.oc1..aaaaaaaamsyx65yzn6dlrfg2moqhmfhdb3bhipgwtb326vhw62xtb4jmu5za"
+  id = var.tenancy_ocid
 }
 
 resource "oci_identity_compartment" "blue" {
