@@ -3,7 +3,7 @@ resource "oci_core_instance" "blue" {
 
   compartment_id      = oci_identity_compartment.blue.id
   availability_domain = data.oci_identity_availability_domain.ad1.name
-  shape               = data.oci_core_images.ubuntu_minimal.shape
+  shape               = data.oci_core_images.ubuntu_minimal_e2.shape
 
   metadata = {
     user_data = base64encode(file("core_instance_user_data.sh"))
@@ -21,7 +21,7 @@ resource "oci_core_instance" "blue" {
 
   source_details {
     source_type             = "image"
-    source_id               = data.oci_core_images.ubuntu_minimal.images[0].id
+    source_id               = data.oci_core_images.ubuntu_minimal_e2.images[0].id
     boot_volume_vpus_per_gb = "10"
   }
 
