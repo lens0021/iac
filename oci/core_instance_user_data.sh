@@ -4,15 +4,18 @@ IFS=$'\n\t'
 
 curl -sL https://gitlab.com/-/snippets/3636759/raw/main/authorized_keys | tee -a /home/ubuntu/.ssh/authorized_keys
 
-sudo add-apt-repository -y ppa:maveonair/helix-editor
+add-apt-repository -y ppa:maveonair/helix-editor
+add-apt-repository -y ppa:openjdk-r/ppa
 apt-get update
 apt-get install -y \
   curl \
   fish \
   fzf \
   helix \
+  htop \
   less \
   software-properties-common \
+  tmux \
   vim \
 ;
 
@@ -32,9 +35,11 @@ apt-get install -y \
 # systemctl start docker
 # usermod -a -G docker ubuntu
 
-sudo adduser --system --home /opt/minecraft minecraft
-sudo groupadd minecraft
-sudo adduser minecraft minecraft
-sudo chown -R minecraft:minecraft /opt/minecraft
+adduser --system --home /opt/minecraft minecraft
+groupadd minecraft
+adduser minecraft minecraft
+usermod -a -G minecraft ubuntu
+chown -R minecraft:minecraft /opt/minecraft
+echo 'eula=true' > /opt/minecraft/eula.txt
 
 echo Hello, OCI
