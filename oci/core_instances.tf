@@ -15,8 +15,8 @@ resource "oci_core_instance" "blue" {
   }
 
   shape_config {
-    ocpus         = 4
-    memory_in_gbs = 24
+    ocpus         = 1
+    memory_in_gbs = 1
   }
 
   source_details {
